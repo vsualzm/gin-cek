@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -56,8 +56,8 @@ func queryHandler(c *gin.Context) {
 }
 
 type BookInput struct {
-	Title    string
-	Price    int
+	Title    string `json:"title" binding:"required"` // validasi untuk gin
+	Price    int    `json:"price" binding:"required"` // validasi untuk gin
 	SubTitle string `json:"sub_title"`
 }
 
@@ -71,7 +71,9 @@ func postBooksHandler(c *gin.Context) {
 	err := c.ShouldBindJSON(&BookInput)
 
 	if err != nil {
-		log.Fatal(err)
+		c.JSON(http.StatusBadRequest, err)
+		fmt.Println(err)
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{

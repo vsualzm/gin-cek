@@ -69,3 +69,32 @@
 	// for _, book := range books {
 	// 	fmt.Println("Title :", book.Title)
 	// }
+
+
+
+		// mengambil data buku
+	// books, err := bookRepository.FindAll()
+	// for _, book := range books {
+	// 	fmt.Println("title:", book.Title)
+	// }
+
+	// mengambil per id
+	// book, err := bookRepository.FindByID(2)
+	// fmt.Println("title:", book.Title)
+
+	// create book
+	// book := book.Book{
+	// 	Title:       "gg geming",
+	// 	Description: "Good book",
+	// 	Price:       2000,
+	// 	Rating:      30,
+	// 	Discount:    20,
+	// }
+
+	// bookRequest := book.BookRequest{
+	// 	Title: "gundam",
+	// 	Price: "123123",
+	// }
+
+	// bookService.Create(bookRequest)
+	// bookRepository.Create(book)

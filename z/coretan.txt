@@ -1,0 +1,71 @@
+	// CRUD
+	// CREATE data
+	// book := book.Book{}
+	// book.Title = "kuna Alkena"
+	// book.Price = 2000
+	// book.Rating = 20
+	// book.Discount = 20
+	// book.Description = "ini adalah buku sangat rekomen banget"
+
+	// err = db.Create(&book).Error
+	// if err != nil {
+	// 	fmt.Println("===================")
+	// 	fmt.Println("error creating book")
+	// 	fmt.Println("===================")
+	// }
+
+	// for _, b := range books {
+	// 	fmt.Println("title", b.Title)
+	// 	fmt.Println("book object %v", b)
+	// }
+
+	// DEELETE
+	// var book book.Book
+	// err = db.Debug().Where("id = ?", 1).First(&book).Error
+	// if err != nil {
+	// 	fmt.Println("===================")
+	// 	fmt.Println("Error finding record")
+	// 	fmt.Println("===================")
+	// }
+
+	// err = db.Delete(&book).Error
+	// if err != nil {
+	// 	fmt.Println("===============")
+	// 	fmt.Println("Error deleting data")
+	// 	fmt.Println("===============")
+	// }
+
+	// fmt.Println("DELETE SUCCESS")
+
+	// update data
+	// var book book.Book
+
+	// err = db.Debug().Where("id = ?", 1).Find(&book).Error
+	// if err != nil {
+	// 	fmt.Println("====================")
+	// 	fmt.Println("Error finding book record")
+	// 	fmt.Println("====================")
+	// }
+
+	// book.Title = "manusia sempurna"
+	// err = db.Save(&book).Error
+	// if err != nil {
+	// 	fmt.Println("=================")
+	// 	fmt.Println("Error updating book")
+	// 	fmt.Println("=================")
+	// }
+
+
+
+		// find by id
+	// bookRepository := book.NewRepository(db)
+	// book, err := bookRepository.FindByID(2)
+	// if err != nil {
+	// 	log.Fatal("data repository bermasalah")
+	// }
+
+	// fmt.Println("Title :", book.Title)
+
+	// for _, book := range books {
+	// 	fmt.Println("Title :", book.Title)
+	// }

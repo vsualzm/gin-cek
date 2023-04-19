@@ -1,0 +1,102 @@
+// CRUD 
+
+// 1
+// konsep create 
+book := book.Book{}
+book.Title = "Main Tiger"
+book.Price = 90000
+book.Discount = 10
+book.Rating = 5
+book.Description = "ini buku rekomendasi"
+
+// konsep pointer 
+err = db.Create(&book).Error
+
+if err != nil{
+    // pilih salah satu 
+    fmt.println("error")
+    log.fatal(errr)
+    panic("error")
+}
+
+// 2
+// konsep  mengambil data (getall or getbyid)
+
+-- mengambil satuan 
+var book.Book
+
+err = db.Debug().First(&book.Book{}).Error
+if err != nil{
+    fmt.println("ERROR FINDING Book")
+}
+
+fmt.println("Tilte :", book.Title)
+fmt.println("Book object %v:,", book)
+
+
+-- ketika ingin mengambil object 
+var books []book.Book
+
+err = db.Debug().find(&books).Error
+if err != nil{
+    fmt.println("error get objecvt data")
+}
+
+-- karena object data harus di looping
+for _, b := range books{
+    fmt.println("Tilte :", book.Title)
+    fmt.println("Book object %v:,", book)
+}
+
+
+// 3 
+// mengupdate data  (update)
+
+var book book.Book
+
+err = db.Debug.Where("id = ?", id).First(&book).Error
+
+if err != nil{
+    fmt.println("mecaRi id error")
+}
+
+-- mengupdate di sini
+book.Title = "mengubah data baru(revisi)"
+
+err = db.Save(&book).Error
+if err != nil{
+    fmt.println("data tidak bisa di simpan dan tidak bisa di update)
+}
+
+
+
+// 4
+// menghapus data
+
+var book book.Book
+err = db.Debug().Where("id = ?", id).First(&book).Error
+
+if err != nil{
+    fmt.println("data tidak di temukan")
+}
+
+err = db.Delete(&book).Error
+
+if err !=nil{
+    fmt.println("data tidak bisa di hapus ")
+} 
+
+
+
+// ctt lain lain 
+
+	bookRepository := book.NewRepository(db)
+	book := book.Book{
+		Title:       "Dilan",
+		Description: "suara dari milea",
+		Price:       2000,
+		Rating:      45,
+		Discount:    20,
+	}
+
+	bookRepository.Create(book)

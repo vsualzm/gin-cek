@@ -9,40 +9,48 @@ import (
 	"github.com/vsualzm/gin-cek/book"
 )
 
-func RootHandler(c *gin.Context) {
+type bookHandler struct {
+	bookService book.Service
+}
+
+func NewBookHandler(bookService book.Service) *bookHandler {
+	return &bookHandler{bookService}
+}
+
+func (h *bookHandler) RootHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"name": "ilham maulana",
 		"bio":  "Seorang programmer",
 	})
 }
 
-func HelloHandler(c *gin.Context) {
+func (h *bookHandler) HelloHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"data": "helohelo",
 		"sub":  "bau kemem",
 	})
 }
 
-func BooksHandler(c *gin.Context) {
+func (h *bookHandler) BooksHandler(c *gin.Context) {
 	id := c.Param("id")
 	title := c.Param("title")
 	c.JSON(http.StatusOK, gin.H{"id": id, "title": title})
 }
 
-func QueryHandler(c *gin.Context) {
+func (h *bookHandler) QueryHandler(c *gin.Context) {
 	title := c.Query("title")
 	price := c.Query("price")
 
 	c.JSON(http.StatusOK, gin.H{"title": title, "price": price})
 }
 
-func PostBooksHandler(c *gin.Context) {
+func (h *bookHandler) PostBooksHandler(c *gin.Context) {
 	// title dan price
 	// menangkap dari struct
 
-	var BookInput book.BookInput
+	var bookRequest book.BookRequest
 
-	err := c.ShouldBindJSON(&BookInput)
+	err := c.ShouldBindJSON(&bookRequest)
 	if err != nil {
 
 		errorMessages := []string{}
@@ -57,9 +65,17 @@ func PostBooksHandler(c *gin.Context) {
 		return
 	}
 
+	book, err := h.bookService.Create(bookRequest)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"errors": err,
+		})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"title": BookInput.Title,
-		"price": BookInput.Price,
+		"data": book,
 	})
 
 }
